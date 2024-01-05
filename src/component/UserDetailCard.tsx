@@ -1,20 +1,8 @@
-import React from "react";
 import "../styles/UserDetailCard.css";
 import useUserListState, { useListStyle } from "../store/store";
+import { userDetailCardType } from "../typescript/TypeScripts";
 
-type userCardType = {
-  fullName: string;
-  country: string;
-  city: string;
-  phone: string;
-  eMail: string;
-  date: string;
-  age: number;
-  userName: string;
-  userAvatar: string;
-  id: string;
-};
-const UserDetailCard = (props: userCardType) => {
+const UserDetailCard = (props: userDetailCardType) => {
   const {
     fullName,
     country,
@@ -27,11 +15,11 @@ const UserDetailCard = (props: userCardType) => {
     userAvatar,
     id,
   } = props;
-  const { users, setFilteredUserList, filteredUserList } = useUserListState();
+  const { users, setFilteredUserList } = useUserListState();
   const { setListStyle } = useListStyle();
 
   const _userDetail = (id: string) => {
-    const filteredUserList = users.filter((v: any) =>
+    const filteredUserList = users.filter((v: { cell: string }) =>
       v.cell === id ? true : false
     );
     setFilteredUserList(filteredUserList);
@@ -39,10 +27,7 @@ const UserDetailCard = (props: userCardType) => {
   };
 
   return (
-    <div
-      className="userDetailCardContainer"
-      onClick={() => `${filteredUserList === undefined ? _userDetail(id) : ""}`}
-    >
+    <div className="userDetailCardContainer" onClick={() => _userDetail(id)}>
       <img className="userDetailImage" src={userAvatar} />
       <div className="userDetailTableContainer">
         <table className="userDetailTable">

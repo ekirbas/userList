@@ -1,11 +1,6 @@
-import React from "react";
 import useUserListState, { useListStyle } from "../store/store";
+import { userCardType } from "../typescript/TypeScripts";
 
-type userCardType = {
-  fullName: string;
-  userAvatar: string;
-  id: string;
-};
 const UserCard = (props: userCardType) => {
   const { fullName, userAvatar, id } = props;
   const { users, setFilteredUserList } = useUserListState();

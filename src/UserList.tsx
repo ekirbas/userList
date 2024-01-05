@@ -8,7 +8,8 @@ const UserList = () => {
   const fecth = async () => {
     try {
       const response = await axios.get("https://randomuser.me/api/?results=20");
-      console.log("respon =", response.data.results);
+      //console.log("respon =", response.data.results);
+      //console.log("respon jsn =", JSON.stringify(response.data.results));
       setUsers(response.data.results);
     } catch (err) {
       console.log(err);

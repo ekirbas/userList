@@ -1,5 +1,3 @@
-//import { ReactComponent as Search1 } from "../assets/react.svg";
-/* import search from "../assets/search.svg"; */
 import userDetailListIcon from "../assets/userDetailListIcon.svg";
 import userAvatarListIcon from "../assets/userAvatarListIcon.svg";
 import backIcon from "../assets/backIcon.svg";
@@ -7,19 +5,39 @@ import useUserListState, { useListStyle } from "../store/store";
 
 const TopBar = () => {
   const { setListStyle } = useListStyle();
-  const { setFilteredUserList } = useUserListState();
+  const { users, setFilteredUserList, searchText, setSearchText } =
+    useUserListState();
 
   const _detailIcon = () => {
     setListStyle("detail");
-    setFilteredUserList(undefined);
+    setFilteredUserList();
   };
   const _avatarIcon = () => {
     setListStyle("avatar");
-    setFilteredUserList(undefined);
+    setFilteredUserList();
   };
   const _backIcon = () => {
     setListStyle("avatar");
-    setFilteredUserList(undefined);
+    setFilteredUserList();
+  };
+  const _search = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let searchtxt = e.target.value;
+    setSearchText(searchtxt);
+
+    if (searchtxt !== "") {
+      const searchUserList = users?.filter(
+        (v: { name: { first: string; last: string } }) => {
+          let fullName: string =
+            v.name.first.toLocaleLowerCase() +
+            " " +
+            v.name.last.toLocaleLowerCase();
+          return fullName.includes(searchtxt.toLocaleLowerCase());
+        }
+      );
+      setFilteredUserList(searchUserList);
+    } else {
+      setFilteredUserList();
+    }
   };
   return (
     <div className="topBarContainer">
@@ -29,8 +47,13 @@ const TopBar = () => {
         src={backIcon}
         onClick={_backIcon}
       />
-      <input className="searchInput" placeholder="Search"></input>
       {/*  <img src={search} /> */}
+      <input
+        className="searchInput"
+        placeholder="Search"
+        value={searchText}
+        onChange={(e) => _search(e)}
+      ></input>
       {/* toggle button */}
       <div className="listStyleIcons">
         <img

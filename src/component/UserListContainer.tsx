@@ -1,8 +1,6 @@
 import ListContainer from "./ListContainer";
 import TopBar from "./TopBar";
 
-/* import { ReactComponent as Search } from "../assets/search.svg"; */
-
 const UserListContainer = () => {
   return (
     <>

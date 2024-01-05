@@ -1,8 +1,6 @@
-import React from "react";
 import UserCard from "./UserCard";
 import UserDetailCard from "./UserDetailCard";
 import useUserListState, { useListStyle } from "../store/store";
-import { useState } from "react";
 
 const ListContainer = () => {
   const { users, filteredUserList } = useUserListState();
@@ -11,7 +9,7 @@ const ListContainer = () => {
   if (listStyle === "avatar") {
     return (
       <div className="listContainer">
-        {users?.map((v: any) => {
+        {(filteredUserList ?? users)?.map((v: any) => {
           return (
             <UserCard
               userAvatar={v.picture.large}
@@ -26,7 +24,7 @@ const ListContainer = () => {
   } else {
     return (
       <div className="detailListContainer">
-        {(filteredUserList || users)?.map((v: any) => {
+        {(filteredUserList ?? users)?.map((v: any) => {
           return (
             <UserDetailCard
               userAvatar={v.picture.large}
