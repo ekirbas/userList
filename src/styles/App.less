@@ -1,0 +1,141 @@
+//@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;600;700&display=swap');
+
+/* @import "./UserDetailCard.less"; */
+
+* {
+  transition: 200ms;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+#root {
+  display: flex;
+  flex: 12;
+}
+.userList {
+  background-color: #1e1e1e;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .space1 {
+    display: flex;
+    flex: 2 3 auto;
+  }
+
+  .userListContainer {
+    background-color: #ffffff;
+    flex: 3 0 auto;
+    min-width: 10%;
+    height: 65%;
+    padding: 16px 26px;
+    position: relative;
+    overflow: auto;
+    border-radius: 10px;
+
+    .topBarContainer {
+      width: 100%;
+      height: 8%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .topBarBackIcon {
+        position: absolute;
+        left: 16px;
+        display: flex;
+        cursor: pointer;
+      }
+      .searchInput {
+        background-color: #fafafa;
+        width: 76%;
+        //height: 40px;
+        border: none;
+        border-radius: 8px;
+        padding: 2px 8px;
+        //font-size: 22px;
+        // font-family: 'Scheherazade New';
+        font: 20px/24px Scheherazade New, serif;
+        &:focus {
+          outline: none;
+        }
+      }
+      .listStyleIcons {
+        position: absolute;
+        right: 16px;
+        display: flex;
+        gap: 8px;
+        .topBarIcons {
+          cursor: pointer;
+          &:hover {
+            transform: scale(1.3);
+          }
+        }
+      }
+    }
+    .listContainer {
+      margin: 26px 0;
+      width: 100%;
+      height: 77%;
+      display: grid;
+      grid-column-gap: 16px;
+      grid-row-gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      grid-auto-rows: 236px;
+      /* grid-template-rows: 1fr; */
+      /*  overflow: auto; */
+
+      .userCardContainer {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        transition: 200ms;
+        &:hover {
+          transform: scale(1.08);
+        }
+
+        .userImage {
+          border-radius: 32px;
+          width: 100%;
+          height: 100%;
+        }
+        .useFullName {
+          width: 100%;
+          text-align: center;
+          margin: 4px 0;
+          /* font-size: 24px;
+                        font-family: 'Scheherazade New'; */
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font: 20px/28px Scheherazade New, serif;
+        }
+      }
+    }
+  }
+
+  /* Scrollbar */
+  /* Firefox */
+  .userListContainer {
+    scrollbar-width: auto;
+    scrollbar-color: #d9d9d9 #ffffff;
+  }
+  /* Chrome, Edge, and Safari */
+  .userListContainer::-webkit-scrollbar {
+    width: 14px;
+  }
+  .userListContainer::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 30px;
+  }
+  .userListContainer::-webkit-scrollbar-thumb {
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
+}
